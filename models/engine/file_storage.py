@@ -6,6 +6,7 @@ guardar los datos de cada instancia creada
 import json
 import os.path
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:

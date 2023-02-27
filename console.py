@@ -6,12 +6,14 @@ encargado de crear actualizar y destruir clases y objetos
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+
 
 
 class HBNBCommand(cmd.Cmd):
     """field to clase HBNBComman """
     prompt = '(hbnb) '
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
     error_messages = {'missing_class': '** class name missing **',
                       'dont_exists_class': "** class doesn't exist **",
                       'missing_id': '** instance id missing **',
