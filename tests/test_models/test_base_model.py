@@ -26,7 +26,19 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """ test save """
         my_model = BaseModel()
+        my_model.name = "sapito"
+        my_model.number = 21
         my_model.save()
+        my_model_json = my_model.to_dict()
+        self.assertIsInstance(my_model_json, dict)
+        self.assertEqual(my_model_json["name"], "sapito")
+        self.assertEqual(my_model_json["number"], 21)
+        self.assertEqual(my_model_json["__class__"], "BaseModel")
+        self.assertEqual(type(my_model_json["updated_at"]), str)
+        self.assertEqual
+        (my_model_json["updated_at"], my_model.updated_at.isoformat())
+        self.assertNotEqual(my_model.created_at, my_model.updated_at)
+        self.assertIsInstance(my_model.created_at, datetime)
         self.assertIsInstance(my_model, BaseModel)
         self.assertNotEqual(my_model.created_at, my_model.updated_at)
         self.assertIsInstance(my_model.updated_at, datetime)
