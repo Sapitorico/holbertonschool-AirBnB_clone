@@ -7,13 +7,18 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 
 class HBNBCommand(cmd.Cmd):
     """field to clase HBNBComman """
     prompt = '(hbnb) '
-    classes = ["BaseModel", "User"]
+    classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
     error_messages = {'missing_class': '** class name missing **',
                       'dont_exists_class': "** class doesn't exist **",
                       'missing_id': '** instance id missing **',
