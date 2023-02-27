@@ -47,6 +47,18 @@ Es la clase base de todos los modelos de AirBnB. Esta clase es la encargada de m
 * storage:
     La variable storage proporciona las funcionalidades de almacenamiento y recuperación de datos. Se utiliza la función new() del módulo storage para registrar una nueva instancia de clase en la aplicación. Además, el método save() utiliza el módulo storage para guardar los cambios en la instancia
 
+<h3>Public instance attributes:</h3>
+    id: string - asigna un identificador unico a cada instancia creada
+    creates_at: asigna una fecha y hora exacta en la que se creo la instancia
+    updated_at: asigna una fecha y hora exacta en la que se actualizo la instancia
+
+<h3>metodos:</h3>
+
+* save: es un método que actualiza el valor del atributo updated_at con la fecha y hora actuales del sistema
+
+* to_dict: devuelve un diccionario con todos los atributos de la instancia en forma de clave-valor. Este método es utilizado para serializar la información de la instancia y convertirla en un formato que pueda ser almacenado o transmitido a través de una red
+
+
 </details>
 </td>
 
