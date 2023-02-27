@@ -32,8 +32,8 @@ class BaseModel:
     def to_dict(self):
         """retorna un diccionario con todas las key y value de la instancia"""
         new_dict = self.__dict__.copy()
+        new_dict['__class__'] = self.__class__.__name__
         for key, value in self.__dict__.items():
             if isinstance(value, datetime):
                 new_dict[key] = value.isoformat()
-        new_dict['__class__'] = self.__class__.__name__
         return new_dict
