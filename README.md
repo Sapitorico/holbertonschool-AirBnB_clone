@@ -143,9 +143,9 @@ To use this interpreter, execute the Console.py file, which imports the HBNBComm
 </details>
 
 
+----
 
-
-<table align="center"> <!-- tabla de clases -->
+<table width="100%"> <!-- tabla de clases -->
 
 <tr> <!-- columnas de la tabla -->
 
