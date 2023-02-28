@@ -7,40 +7,54 @@ import os
 
 
 class TestFileStorage(unittest.TestCase):
-    """Test cases for the FileStorage class"""
+    """ Test cases for FileStorage """
 
     def setUp(self):
-        """Set up test environment"""
-        self.storage = FileStorage()
+        """ Setup test """
+        self.file_storage = FileStorage()
 
     def tearDown(self):
-        """Tear down test environment"""
-        if os.path.isfile(self.storage._FileStorage__file_path):
-            os.remove(self.storage._FileStorage__file_path)
+        """ Delete file.json """
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+
+    def test_attributes(self):
+        """ Test __objects, __file_path """
+        self.assertEqual(type(self.file_storage._FileStorage__objects), dict)
+        self.assertEqual(type(self.file_storage._FileStorage__file_path), str)
 
     def test_all(self):
-        """Test the all method"""
-        self.assertEqual(self.storage.all(), {})
+        """ Test all method """
+        self.assertEqual(self.file_storage.all(), {})
 
     def test_new(self):
-        """Test the new method"""
-        model = BaseModel()
-        self.storage.new(model)
-        self.assertEqual(self.storage.all(), {'BaseModel.' + model.id: model})
+        """ Test new method """
+        my_model = BaseModel()
+        self.assertEqual(len(self.file_storage.all()), 1)
+        self.assertIn("BaseModel." + my_model.id, self.file_storage.all())
 
     def test_save(self):
-        """Test the save method"""
-        model = BaseModel()
-        self.storage.new(model)
-        self.storage.save()
-        self.assertTrue(os.path.isfile(self.storage._FileStorage__file_path))
+        """ Test save method """
+        my_model = BaseModel()
+        self.file_storage.save()
+        with open("file.json", "r") as f:
+            self.assertIn("BaseModel." + my_model.id, f.read())
 
     def test_reload(self):
-        """Test the reload method"""
-        model = BaseModel()
-        self.storage.new(model)
-        self.storage.save()
-        self.assertIn('BaseModel.' + model.id, self.storage.all())
+        """ Test reload method """
+        my_model = BaseModel()
+        self.file_storage.save()
+        objects = self.file_storage.all()
+        self.assertEqual(len(objects), 2)
+        for key in objects.keys():
+            self.assertTrue(isinstance(objects[key], BaseModel))
+
+    def test_file_path(self):
+        """ Test __file_path attribute """
+        self.assertEqual(self.file_storage._FileStorage__file_path, "file.json")
+
 
 
 if __name__ == '__main__':
