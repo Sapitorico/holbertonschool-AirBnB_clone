@@ -3,7 +3,6 @@
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-from datetime import datetime
 import os.path
 
 
@@ -36,9 +35,13 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         """Test the save method"""
+        from models import storage
         model = BaseModel()
         self.storage.new(model)
         self.storage.save()
+        self.assertTrue(os.path.isfile("file.json"))
+        model = BaseModel()
+        storage.save()
         self.assertTrue(os.path.isfile("file.json"))
 
     def test_reload(self):
