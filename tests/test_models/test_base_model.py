@@ -15,6 +15,18 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(my_model.created_at, datetime)
         self.assertIsInstance(my_model.updated_at, datetime)
 
+    """ Test BaseModel: save() """
+    def test_save(self):
+        """ test save """
+        my_model = BaseModel()
+        my_model.save()
+        self.assertNotEqual(my_model.created_at, my_model.updated_at)
+        self.assertIsInstance(my_model.created_at, datetime)
+        self.assertIsInstance(my_model, BaseModel)
+        self.assertNotEqual(my_model.created_at, my_model.updated_at)
+        self.assertIsInstance(my_model.updated_at, datetime)
+        self.assertEqual(type(my_model.updated_at), datetime)
+
     def test_str(self):
         """ test str """
         my_model = BaseModel()
@@ -23,7 +35,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(string, str)
         self.assertIsInstance(my_model, BaseModel)
 
-    def test_save(self):
+    def test_save2(self):
         """ test save """
         my_model = BaseModel()
         my_model.save()
