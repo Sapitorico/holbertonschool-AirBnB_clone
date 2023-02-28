@@ -5,45 +5,50 @@ from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from datetime import datetime
 import os.path
-import json
 
 
 class TestFileStorage(unittest.TestCase):
-    """ field to tests from FileStorage """
-    def test_attributes(self):
-        """ test attributes """
-        my_model = FileStorage()
-        self.assertIsInstance(my_model, FileStorage)
-        self.assertIsInstance(my_model._FileStorage__file_path, str)
-        self.assertIsInstance(my_model._FileStorage__objects, dict)
+    """Tests for the FileStorage class"""
+
+    def setUp(self):
+        """Set up the FileStorage instance"""
+        self.storage = FileStorage()
+
+    def tearDown(self):
+        """Delete the FileStorage instance"""
+        del self.storage
 
     def test_all(self):
-        """ test all """
-        my_model = FileStorage()
-        self.assertIsInstance(my_model.all(), dict)
+        """Test the all method"""
+        self.assertEqual(len(self.storage.all()), 0)
+        model1 = BaseModel()
+        model2 = BaseModel()
+        self.storage.new(model1)
+        self.storage.new(model2)
+        self.assertEqual(len(self.storage.all()), 2)
 
     def test_new(self):
-        """ test new """
-        my_model = FileStorage()
-        my_model.new(BaseModel())
-        self.assertIsInstance(my_model._FileStorage__objects, dict)
+        """Test the new method"""
+        self.assertEqual(len(self.storage.all()), 0)
+        model = BaseModel()
+        self.storage.new(model)
+        self.assertEqual(len(self.storage.all()), 1)
 
     def test_save(self):
-        """ test save """
-        my_model = FileStorage()
-        my_model.new(BaseModel())
-        my_model.save()
-        self.assertIsInstance(my_model._FileStorage__objects, dict)
-        self.assertTrue(os.path.exists(my_model._FileStorage__file_path))
+        """Test the save method"""
+        model = BaseModel()
+        self.storage.new(model)
+        self.storage.save()
+        self.assertTrue(os.path.isfile("file.json"))
 
     def test_reload(self):
-        """ test reload """
-        my_model = FileStorage()
-        my_model.new(BaseModel())
-        my_model.save()
-        my_model.reload()
-        self.assertIsInstance(my_model._FileStorage__objects, dict)
-        self.assertTrue(os.path.exists(my_model._FileStorage__file_path))
+        """Test the reload method"""
+        model = BaseModel()
+        self.storage.new(model)
+        self.storage.save()
+        FileStorage._FileStorage__objects = {}
+        self.storage.reload()
+        self.assertNotEqual(len(self.storage.all()), 0)
 
 
 if __name__ == '__main__':
