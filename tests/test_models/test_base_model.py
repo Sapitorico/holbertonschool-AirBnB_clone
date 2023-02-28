@@ -54,6 +54,13 @@ class TestBaseModel(unittest.TestCase):
             datetime.strptime('2022-02-28T15:00:00.000000', '%Y-%m-%dT%H:%M:%S.%f'))
         self.assertEqual(model.name, 'test')
 
+    def test_save(self):
+        """ Test save method """
+        my_model = BaseModel()
+        my_model.save()
+        with open("file.json", "r") as f:
+            self.assertIn("BaseModel." + my_model.id, f.read())
+
 
 if __name__ == '__main__':
     unittest.main()
