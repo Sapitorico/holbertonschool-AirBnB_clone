@@ -14,17 +14,20 @@ from models.place import Place
 from models.review import Review
 
 
-
 class HBNBCommand(cmd.Cmd):
     """field to clase HBNBComman """
     prompt = '(hbnb) '
-    classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
-    error_messages = {'missing_class': '** class name missing **',
-                      'dont_exists_class': "** class doesn't exist **",
-                      'missing_id': '** instance id missing **',
-                      'dont_exists_id': '** no instance found **',
-                      'missing_attribute': '** attribute name missing **',
-                      'missing_value': '** value missing **'}
+    classes = [
+        "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"
+        ]
+    error_messages = {
+        'missing_class': '** class name missing **',
+        'dont_exists_class': "** class doesn't exist **",
+        'missing_id': '** instance id missing **',
+        'dont_exists_id': '** no instance found **',
+        'missing_attribute': '** attribute name missing **',
+        'missing_value': '** value missing **'
+        }
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
