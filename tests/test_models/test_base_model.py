@@ -36,22 +36,26 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model_dict, dict)
         self.assertEqual(model_dict['__class__'], 'BaseModel')
         self.assertIsInstance(
-            datetime.strptime(model_dict['created_at'], '%Y-%m-%dT%H:%M:%S.%f'),
-            datetime)
+            datetime.strptime(
+                model_dict['created_at'], '%Y-%m-%dT%H:%M:%S.%f'), datetime)
         self.assertIsInstance(
-            datetime.strptime(model_dict['updated_at'], '%Y-%m-%dT%H:%M:%S.%f'),
+            datetime.strptime(
+                model_dict['updated_at'], '%Y-%m-%dT%H:%M:%S.%f'),
             datetime)
 
     def test_kwargs_instantiation(self):
-        kwargs = {'id': '123', 'created_at': '2022-02-28T15:00:00.000000', 'updated_at': '2022-02-28T15:00:00.000000', 'name': 'test'}
+        kwargs = {'id': '123', 'created_at': '2022-02-28T15:00:00.000000',
+                  'updated_at': '2022-02-28T15:00:00.000000', 'name': 'test'}
         model = BaseModel(**kwargs)
         self.assertEqual(model.id, '123')
         self.assertEqual(
             model.created_at,
-            datetime.strptime('2022-02-28T15:00:00.000000', '%Y-%m-%dT%H:%M:%S.%f'))
+            datetime.strptime(
+                '2022-02-28T15:00:00.000000', '%Y-%m-%dT%H:%M:%S.%f'))
         self.assertEqual(
             model.updated_at,
-            datetime.strptime('2022-02-28T15:00:00.000000', '%Y-%m-%dT%H:%M:%S.%f'))
+            datetime.strptime(
+                '2022-02-28T15:00:00.000000', '%Y-%m-%dT%H:%M:%S.%f'))
         self.assertEqual(model.name, 'test')
 
     def test_save(self):
