@@ -63,7 +63,7 @@ The console, HBNBCommand, is a command interpreter that allows the user to creat
 
 <tr>
 <th>command</th>
-<th align="center">Description</th>
+<th>Description</th>
 </tr>
 
 <tr>
@@ -145,14 +145,12 @@ To use this interpreter, execute the Console.py file, which imports the HBNBComm
 
 ----
 
-<table align="center" width="100%" height="100%"> <!-- tabla de clases -->
+<table align="center"> <!-- tabla de clases -->
 
 <tr> <!-- columnas de la tabla -->
-
-<th>constructionClasses</th>
-<th>description</th>
-<th>testsFiles</th>
-
+<th>Construction Classes</th>
+<th>Description</th>
+<th>TestsFiles</th>
 </tr>
 
 <tr> <!-- fila 1  -->
@@ -160,7 +158,6 @@ To use this interpreter, execute the Console.py file, which imports the HBNBComm
 <td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/models/base_model.py">BaseModel</a></td> <!-- Class columna 1-->
 
 <td> <!-- description -->
-
 <details>
 <summary><h2>BaseModel</h2></summary>
 
@@ -192,9 +189,9 @@ It is the base class of all Airbnb models.This class is in charge of managing th
 
 <td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/tests/test_models/test_base_model.py">test_base_model</a></td>
 
-
-
 </tr> <!-- fin de fila 1-->
+
+<tr>
 
 <td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/models/engine/file_storage.py">FileStorage</a></td>
 
@@ -217,10 +214,9 @@ Filestorage is a class that is used to handle persistent storage of objects in a
 
 </details>
 </td>
+
 <td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/tests/test_models/test_engine/test_file_storage.py">test file_storage</a></td>
-
-
-<tr>
+</tr>
 
 </table>
 
