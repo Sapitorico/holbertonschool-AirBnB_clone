@@ -59,7 +59,8 @@ class TestFileStorage(unittest.TestCase):
         self.file_storage.save()
         with open(self.file_storage._FileStorage__file_path, "r") as f:
             data = json.load(f)
-        data["BaseModel.1234"] = {"id": "1234", "__class__": "BaseModel", "name": "test"}
+        data["BaseModel.1234"] = {"id": "1234",
+                                  "__class__": "BaseModel", "name": "test"}
         with open(self.file_storage._FileStorage__file_path, "w") as f:
             json.dump(data, f)
         self.file_storage.reload()
@@ -70,8 +71,8 @@ class TestFileStorage(unittest.TestCase):
 
     def test_file_path(self):
         """ Test __file_path attribute """
-        self.assertEqual(self.file_storage._FileStorage__file_path, "file.json")
-
+        self.assertEqual(
+            self.file_storage._FileStorage__file_path, "file.json")
 
 
 if __name__ == '__main__':
