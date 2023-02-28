@@ -33,6 +33,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(my_model.created_at, my_model.updated_at)
         self.assertIsInstance(my_model.updated_at, datetime)
         self.assertEqual(type(my_model.updated_at), datetime)
+        from models import storage
+        obj = BaseModel()
+        obj.save()
+        obj2 = storage.all()["BaseModel." + obj.id]
+        self.assertEqual(obj, obj2)
 
     def test_save_2(self):
         from models import storage
