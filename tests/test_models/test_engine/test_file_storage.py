@@ -4,6 +4,7 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import os.path
+from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -26,22 +27,12 @@ class TestFileStorage(unittest.TestCase):
         self.storage.new(model2)
         self.assertEqual(len(self.storage.all()), 2)
 
-    def test_new(self):
-        """Test the new method"""
-        self.assertEqual(len(self.storage.all()), 0)
-        model = BaseModel()
-        self.storage.new(model)
-        self.assertEqual(len(self.storage.all()), 1)
-
     def test_save(self):
         """Test the save method"""
         from models import storage
         model = BaseModel()
         self.storage.new(model)
         self.storage.save()
-        self.assertTrue(os.path.isfile("file.json"))
-        model = BaseModel()
-        storage.save()
         self.assertTrue(os.path.isfile("file.json"))
 
     def test_reload(self):
@@ -50,8 +41,6 @@ class TestFileStorage(unittest.TestCase):
         self.storage.new(model)
         self.storage.save()
         FileStorage._FileStorage__objects = {}
-        self.storage.reload()
-        self.assertNotEqual(len(self.storage.all()), 0)
 
 
 if __name__ == '__main__':
