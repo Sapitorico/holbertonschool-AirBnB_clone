@@ -1,74 +1,202 @@
 <div><h1 align="center">AirBnB clone</h1> <!-- titulo -->
 
-El objetivo del proyecto es desplegar en tu servidor una copia simple del sitio web de AirBnB.
-La primera parte de este proyecto es crear un intérprete de comandos para manipular datos sin una interfaz visual, como en un Shell (perfecto para desarrollo y depuración)
+The objective of the project is to deploy on your server a simple copy of the Airbnb website.
+The first part of this project is to create a command interpreter to manipulate data without a visual interface, as in a Shell (perfect for development and purification)
 </div>
 
 <h2 align="center">The console</h2>
 
 ## Primer paso
 
-Escribir un intérprete de comandos para gestionar tus objetos AirBnB.
-Cada tarea está vinculada y te ayudará a: poner en marcha una clase padre que se encargue de la inicialización, serialización y deserialización de tus futuras instancias crear un flujo simple de serialización/deserialización: Diccionario de instancias Archivo de cadenas JSON crear todas las clases utilizadas para AirBnB que heredan de BaseModel crear el primer motor de almacenamiento abstracto del proyecto: Almacenamiento de archivos.
-Segundo paso: Escribir un comando de consola para manipular los objetos de tu aplicación.
-Cada tarea está vinculada y te ayudará a: crear un comando de consola para manipular tus objetos de la aplicación crear los métodos de creación, actualización y destrucción de los objetos de tu aplicación crear los métodos de consulta de tus objetos de tu aplicación
+Write a command interpreter to manage your Airbnb objects.
+Each task is linked and will help you: launch a father class that is responsible for the initialization, serialization and deserialization of your future instances to create a simple serialization/deserialization flow: instances dictionary Chain Archive Json Create all the classes usedFor Airbnb that inherit from BaseModel to create the first abstract storage engine of the project: file storage.
+Second step: Write a console command to manipulate the objects of your application.
+Each task is linked and will help you: Create a console command to manipulate your application objects Create the methods of creation, updating and destruction of your application objects Create the consultation methods of your objects of your application
 
 -----
 
-<table align="center"> <!-- tabla de clases -->
+<details>
+<summary><h1><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/console.py">Console</a></h1></summary>
+
+The console, HBNBCommand, is a command interpreter that allows the user to create, update, eliminate and search objects using specific commands.In other words, this console is a command line interface that interacts with program objects.
+
+<details>
+<summary><h3>Modulos</h3></summary>
+
+* cmd: The cmd module is a standard Python library that provides a base class to create interactive consoles.This module facilitates the definition of personalized commands, the administration of arguments and the customization of the appearance of the console.It is a useful tool to create interactive command line interfaces in Python.
+
+* Storage: It is the variable of an object that manages the storage and recovery of objects of the different classes inheriting from BaseModel.Storage is used by different methods to perform operations in objects, such as creating new objects, showing information from existing objects, eliminating objects, updating objects of object attributes, and listing objects.
+
+</details>
+
+
+<details>
+<summary><h1>Subclasses</h1></summary>
+
+# User:
+    The User class is a subclass of the BaseModel class, which is used to represent a user in an application.It has four public class attributes: email, password, first_name and last_ame.
+
+    These attributes represent the basic information of a user, such as its email address, password and full name.Inheriting the BaseModel class, the User class also has access to the attributes and methods of the base class, which allows greater flexibility and personalization in the implementation of the user functionality in the application.
+
+# State:
+    The Subclass State inheritance of the BaseModel class and represents the status of a location.It has a public class attribute called Name and represents the name of the State.
+
+# City:
+    The subclass City also inherits the BaseModel class and represents a city in a specific location.It has two public attributes: state_id and represents the id of the state associated with the city, and name and represents the name of the city.
+# Amenity:
+    The amenity inherited subclass of the BaseModel class and represents a comfort or service offered in one place.It has a public class attribute called name and represents the name of comfort or service.
+# Place:
+    The subclass place also inherits the BaseModel class and represents a place in a specific location. It has several public attributes, such as city_id, user_id, name, Description, number_rooms, number_Bathrooms, max_Guest, price_by_night, latitude, length and amenity_ids.These attributeList of comforts associated with the place.
+
+# Review:
+    The subclass review also inherits from the BaseModel class and represents a review or comment of a user on a place.It has three public attributes: place_id and represents the ID of the place associated with the review, user_id, which is an empty default chain and represents the user's ID that made the review, and text and represents the text of the review.
+
+</details>
+
+<details>
+<summary align="center"><h1>Uso</h1></summary>
+
+<details align="center">
+<summary><h3>commands</h3></summary>
+
+<table align="center" width="100%">
+
+<tr>
+<th>command</th>
+<th align="center">Description</th>
+</tr>
+
+<tr>
+<td>create</td>
+<td>Create a new instance, keep it in a JSON file and show your ID</td>
+</tr>
+
+<tr>
+<td>show</td>
+<td>Shows the chain representation of an instance based on the name of the class and the ID</td>
+</tr>
+
+<tr>
+<td>destroy</td>
+<td>Eliminate an instance based on the name of the class and the ID (keep the change in the JSON file)</td>
+</tr>
+
+<tr>
+<td>all</td>
+<td>Shows the chain representation of all instances based or not on the name of the class</td>
+</tr>
+
+<tr>
+<td>update</td>
+<td>Update an instance based on the name of the class and the ID adding or updating an attribute (keep the change in the JSON file).You can only update one attribute at the same time.It can be assumed that the name of the attribute is valid (exists for this model) and that the attribute value becomes the appropriate type of attribute</td>
+</tr>
+
+</table>
+</details>
+
+
+The code provides a command line interpreter to manipulate objects in a database of object using the Storage module that is imported from the Models package.This interpreter accepts the following commands:
+
+* quit: To get out of the interpreter
+* EOF: equivalent to quit
+* create <class name>: Create a new instance of a given class and store your data in the database.Returns the ID of the created instance.
+* show <class name> <id>: It shows the chain representation of a specific instance depending on its id and class.
+* destroy <class name> <id>: Eliminates a specific instance based on its id and class.
+* all [class name]: It shows the chain representation of all instances stored in the database.If a class name is provided, only the instances of that class will be shown.
+* update <class name> <id> <attribute name> <attribute value>: Update an attribute of a specific instance depending on your id and class.
+
+To use this interpreter, execute the Console.py file, which imports the HBNBCommand class and the instance.In the command line, write one of the previous commands along with any required argument.Here are some examples:
+
+* To create a new instance of the User class:
+```py
+(hbnb) create User
+```
+
+* To show the instance chain representation with ID 123 of the State class:
+```py
+(hbnb) show State 123
+```
+
+* To eliminate the instance with ID 456 of the City class:
+```py
+(hbnb) destroy City 456
+```
+
+* To show all instances stored in the database:
+```py
+(hbnb) all
+```
+
+* To show all instances of the amenity class:
+```py
+(hbnb) all Amenity
+```
+
+* To update the Name attribute of the instance with ID 789 of the Place class to New York:
+```py
+(hbnb) update Place 789 name "New York"
+```
+
+</details>
+
+
+</details>
+
+
+
+
+<table align="center" width="100%"> <!-- tabla de clases -->
 
 <tr> <!-- columnas de la tabla -->
 
-<th>Class</th>
-<th>Description</th>
-<th>Tests Files</th>
+<th>constructionClasses</th>
+<th>description</th>
+<th>testsFiles</th>
 
 </tr>
 
 <tr> <!-- fila 1  -->
 
-<td><a href="">BaseModel</a></td> <!-- Class columna 1-->
+<td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/models/base_model.py">BaseModel</a></td> <!-- Class columna 1-->
 
 <td> <!-- description -->
 
 <details>
 <summary><h2>BaseModel</h2></summary>
 
-Es la clase base de todos los modelos de AirBnB. Esta clase es la encargada de manejar la serialización/deserialización de los atributos de los otros modelos, y de guardar en un archivo JSON todos los objetos instanciados. También es la clase base de todos los otros modelos de AirBnB, por lo que hereda de ella.
+It is the base class of all Airbnb models.This class is in charge of managing the serialization/deerialization of the attributes of the other models, and to save in a JSON file all the instantaneous objects.It is also the base class of all other Airbnb models, so it inherits from it.
 
-<h3>Modulos</h3>
+<h3>Modules</h3>
 
 * uuid:
-    El módulo uuid en Python proporciona objetos UUID inmutables (la clase UUID) y las funciones uuid1(), uuid3(), uuid4(), uuid5() para generar identificadores universalmente únicos. Los valores de UUID versión 1 se calculan utilizando la dirección MAC((MAC address) es un identificador único asignado a un controlador de interfaz de red (NIC) para su uso como dirección de red) del host, mientras que la versión 4 usa pseudo-random number generators para generar UUIDs. El módulo también ofrece una herramienta para acortar los UUIDs para su uso en URLs
-
+    The UUID module in Python provides immutable UUID objects (the UUID class) and the UUID1 (), UUID3 (), UUID4 (), UUID5 () functions to generate universally unique identifiers.The UUID Version 1 values are calculated using the MAC address ((Mac Address) is a unique identifier assigned to a network interface controller (NIC) for use as a network address) of the host, while version 4 uses pseudo-Random Number Generators to generate UUIDS.The module also offers a tool to shorten the UUIDS for use in URLs
 * datetime:
-    El módulo datetime en Python proporciona clases para manipular fechas y horas, permitiendo operaciones aritméticas con fechas y horas. Se puede crear un datetime manualmente pasando los parámetros (year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None). Para trabajar con fechas en Python se debe importar el módulo datetime que incorpora los tipos de datos date, time y datetime para representar fechas y horas.
+    The Datetime module in Python provides classes to manipulate dates and hours, allowing arithmetic operations with dates and hours.You can create a datetime manually passing the parameters (Year, Month, Day, Hour = 0, Minute = 0, Second = 0, Microscond = 0, Tzinfo = None).To work with dates in Python, the datetime module that incorporates the Date, Time and Datetime data to represent dates and hours must be imported.
 
 * storage:
-    La variable storage proporciona las funcionalidades de almacenamiento y recuperación de datos. Se utiliza la función new() del módulo storage para registrar una nueva instancia de clase en la aplicación. Además, el método save() utiliza el módulo storage para guardar los cambios en la instancia
+    The Storage variable provides data storage and recovery functionalities.The New () function of the Storage module is used to register a new class instance in the application.In addition, the Save () method uses the Storage module to save the changes in the instance
 
 <h3>Public instance attributes:</h3>
-    id: string - asigna un identificador unico a cada instancia creada
-    creates_at: asigna una fecha y hora exacta en la que se creo la instancia
-    updated_at: asigna una fecha y hora exacta en la que se actualizo la instancia
+    id: string - assigns a unique identifier to each instance created
+    creates_at: assign an exact date and time in which the instance was created
+    updated_at: assign an exact date and time in which the instance was updated
 
-<h3>metodos:</h3>
+<h3>METHODS:</h3>
 
-* save: es un método que actualiza el valor del atributo updated_at con la fecha y hora actuales del sistema
+* save: It is a method that updates the value of the UPDATED_AT attribute with the current date and time of the system
 
-* to_dict: devuelve un diccionario con todos los atributos de la instancia en forma de clave-valor. Este método es utilizado para serializar la información de la instancia y convertirla en un formato que pueda ser almacenado o transmitido a través de una red
-
+* to_dict: Returns a dictionary with all the attributes of the instance in the form of key-value.This method is used to serialize instance information and turn it into a format that can be stored or transmitted through a network
 
 </details>
 </td>
 
-<td><a href="">test_base_model</a></td>
+<td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/tests/test_models/test_base_model.py">test_base_model</a></td>
 
 
 
 </tr> <!-- fin de fila 1-->
 
-<td><a href="">FileStorage</a></td>
+<td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/models/engine/file_storage.py">FileStorage</a></td>
 
 
 <td>
@@ -76,64 +204,23 @@ Es la clase base de todos los modelos de AirBnB. Esta clase es la encargada de m
 <details>
 <summary><h2>FileStorage</h2></summary>
 
-FileStorage es una clase que se utiliza para manejar el almacenamiento persistente de objetos en una aplicación web. Se enfoca en el almacenamiento de archivos y se utiliza para separar la gestión de almacenamiento de la lógica del modelo, lo que permite que los modelos sean modulares e independientes. Al utilizar atributos de clase en lugar de atributos de instancia, se proporciona una descripción clara y un valor predeterminado de cualquier atributo, lo que permite un comportamiento consistente del modelo en cualquier sistema de almacenamiento utilizado. En resumen, FileStorage es una implementación de un sistema de almacenamiento en archivo utilizando el formato JSON para almacenar información sobre instancias de clases.
+Filestorage is a class that is used to handle persistent storage of objects in a web application.It focuses on file storage and is used to separate the storage management of the logic of the model, which allows modular and independent models.By using class attributes instead of instance attributes, a clear description and predetermined value of any attribute are provided, allowing a consistent behavior of the model in any storage system used.In summary, Filestorage is an implementation of a file storage system using the JON format to store information about classes.
 
 
-<h3>Modulos</h3>
+<h3>Modules</h3>
 
 * json:
-    proporciona una forma de codificar y decodificar datos JSON. Se utiliza para convertir objetos Python en una representación serializada que puede almacenarse en un archivo o transmitirse a través de la red. El operador módulo (%) en Python se utiliza para obtener el resto de una división.
+    It provides a way to code and decode JSON data.It is used to convert Python objects into a serialized representation that can be stored in a file or transmitted through the network.The Module (%) operator in Python is used to obtain the rest of a division.
 
 * os.path:
-    en Python se utiliza para diferentes propósitos, tales como la fusión, la normalización y la recuperación de los nombres de ruta en Python.
+    In Python it is used for different purposes, such as merger, normalization and recovery of route names in Python.
 
 </details>
 </td>
-<td><a href="">test file_storage</a></td>
+<td><a href="https://github.com/Sapitorico/holbertonschool-AirBnB_clone/blob/main/tests/test_models/test_engine/test_file_storage.py">test file_storage</a></td>
 
 
 <tr>
-
-<td><a href="">Console</a></td>
-
-<td>
-<details>
-<summary><h2>Console</h2></summary>
-
-La consola , HBNBCommand, es un intérprete de comandos que permite al usuario crear, actualizar, eliminar y buscar objetos utilizando comandos específicos. En otras palabras, esta consola es una interfaz de línea de comandos que interactúa con objetos del programa.
-
-<h3>Modulos</h3>
-
-El módulo cmd es una biblioteca estándar de Python que proporciona una clase base para crear consolas interactivas. Este módulo facilita la definición de comandos personalizados, la administración de argumentos y la personalización de la apariencia de la consola. Es una herramienta útil para crear interfaces de línea de comandos interactivas en Python.
-
-<h3>commands:</h3>
-
-## create:
-    Crea una nueva instancia, la guarda en un archivo JSON y muestra su id.
-
-## show:
-    Muestra la representación en cadena de una instancia basada en el nombre de la clase y el id.
-
-## destroy:
-    Elimina una instancia basada en el nombre de la clase y el id (guarda el cambio en el archivo JSON)
-
-## all:
-    Muestra la representación en cadena de todas las instancias basadas o no en el nombre de la clase
-
-## update:
-    Actualiza una instancia basada en el nombre de la clase y el id agregando o actualizando un atributo (guarda el cambio en el archivo JSON). Solo se puede actualizar un atributo a la vez. Se puede asumir que el nombre del atributo es válido (existe para este modelo) y que el valor del atributo se convierte al tipo de atributo adecuado.
-
-</details>
-
-<td><a href="">tests</a></a></td>
-
-</td>
-
-</tr>  <!-- fin de la fila 3 -->
-
-<tr>
-<td>wqewqe</td>
-</tr>
 
 </table>
 
@@ -143,13 +230,13 @@ El módulo cmd es una biblioteca estándar de Python que proporciona una clase b
 
 
 <details>
-<summary><h2 align="center">Recursos</h2></summary>
+<summary><h2 align="center">Resources</h2></summary>
 
 # *args and **kwargs in python explained
 
-En Python, "args" y "kwargs" son dos parámetros especiales que se pueden utilizar en las definiciones de las funciones para recibir argumentos variables.
+A python, "args" and "kwargs" They are two special parameters that can be used in the definitions of the functions to receive variable arguments.
 
-"Args" es un parámetro que permite a una función recibir un número variable de argumentos no nombrados. Esto significa que se puede pasar cualquier cantidad de argumentos a la función y Python los empacará todos en una tupla. Veamos un ejemplo:
+"Args" It is a parameter that allows a function to receive a variable number of unpalled arguments.This means that any amount of arguments can be passed to the function and Python will all pack them in a tupla.Let's look at an example:
 
 ```py
 def my_function(*args):
@@ -159,7 +246,7 @@ def my_function(*args):
 my_function(1, 2, 3)
 ```
 
-En este ejemplo, definimos una función llamada my_function con un parámetro *args. Luego llamamos a la función con tres argumentos: 1, 2 y 3. Al imprimir los valores de args en el cuerpo de la función, obtenemos:
+In this example, we define a function called my_function with a parameter *args.Then we call the function with three arguments: 1, 2 and 3. By printing the args values in the body of the function, we obtain:
 
 ```
 1
@@ -167,9 +254,9 @@ En este ejemplo, definimos una función llamada my_function con un parámetro *a
 3
 ```
 
-Esto significa que Python empacó los argumentos en una tupla y los pasó a la función.
+This means that Python packed the arguments in a tupla and passed them to the function.
 
-"Kwargs" es un parámetro que permite a una función recibir un número variable de argumentos nombrados. Esto significa que se puede pasar cualquier cantidad de argumentos con un nombre específico a la función y Python los empacará en un diccionario. Veamos un ejemplo:
+"Kwargs" It is a parameter that allows a function to receive a variable number of arguments named.This means that any amount of arguments can be passed with a specific name to the function and Python will pack them in a dictionary.Let's look at an example:
 
 ```py
 def my_function(**kwargs):
@@ -179,7 +266,7 @@ def my_function(**kwargs):
 my_function(name='Alice', age=30, city='New York')
 ```
 
-En este ejemplo, definimos una función llamada my_function con un parámetro **kwargs. Luego llamamos a la función con tres argumentos nombrados: name, age y city. Al imprimir los valores de kwargs en el cuerpo de la función, obtenemos:
+In this example, we define a function called my_function with a parameter ** kwargs.Then we call the function with three arguments named: Name, AGE and City.By printing Kwargs values in the body of the function, we get:
 
 ```py
 name Alice
@@ -187,14 +274,14 @@ age 30
 city New York
 ```
 
-Esto significa que Python empacó los argumentos nombrados en un diccionario y los pasó a la función.
+This means that Python packed the arguments named in a dictionary and passed them to the function.
 
-En resumen, "args" y "kwargs" son parámetros especiales que permiten a las funciones de Python recibir argumentos variables. "Args" se utiliza para recibir argumentos no nombrados, mientras que "kwargs" se utiliza para recibir argumentos nombrados. Estos parámetros pueden ayudar a hacer que las funciones sean más flexibles y fáciles de usar.
+In summary, "args" y "kwargs" They are special parameters that allow Python functions to receive variable arguments."ARGS" is used to receive unpalled arguments, while "Kwargs" is used to receive appointed arguments.These parameters can help make functions more flexible and easy to use.
 
 # JSON encoder and decoder
 
-La librería "json" de Python permite codificar y decodificar datos en formato JSON. JSON es un formato de datos ligero y fácil de leer que se utiliza comúnmente en aplicaciones web y móviles para enviar y recibir datos.
-Una vez que hemos importado la librería, podemos usar sus funciones para codificar y decodificar datos en formato JSON. Por ejemplo, para codificar un diccionario Python en formato JSON, podemos usar la función json.dumps():
+The bookstore "json" Python allows you to encode and decode data in JSON format.JSON is a light and easy -to -read data format that is commonly used in web and mobile applications to send and receive data.
+Once we have imported the bookstore, we can use its functions to code and decode data in JSON format.For example, to encode a Python dictionary in JSON format, we can use the JSON.DUMPS () function:
 
 ```py
 my_dict = {'name': 'Alice', 'age': 30, 'city': 'New York'}
@@ -202,9 +289,9 @@ json_str = json.dumps(my_dict)
 print(json_str)
 ```
 
-En este ejemplo, creamos un diccionario llamado my_dict y luego lo codificamos en formato JSON utilizando la función json.dumps(). Luego imprimimos la cadena JSON resultante en la consola.
+In this example, we create a dictionary called My_DICT and then we encode it in JSON format using the JSON.DUMPS () function.Then we print the JSON chain resulting in the console.
 
-Para decodificar una cadena JSON en un objeto Python, podemos usar la función json.loads():
+To decode a JSON chain in a python object, we can use the JSON.Loads () function:
 
 ```py
 json_str = '{"name": "Alice", "age": 30, "city": "New York"}'
@@ -212,9 +299,9 @@ my_dict = json.loads(json_str)
 print(my_dict)
 ```
 
-En este ejemplo, creamos una cadena JSON llamada json_str y luego la decodificamos en un diccionario Python utilizando la función json.loads(). Luego imprimimos el diccionario resultante en la consola.
+In this example, we create a JSON chain called JSON_STR and then decode it in a Python dictionary using the JSON.Loads () function.Then we print the resulting dictionary in the console.
 
-La librería "json" también proporciona opciones avanzadas para personalizar el proceso de codificación y decodificación. Por ejemplo, podemos proporcionar una función personalizada para codificar un objeto en formato JSON utilizando el parámetro default de la función json.dumps():
+The "JSON" bookstore also provides advanced options to customize the coding and decoding process.For example, we can provide a personalized function to encode an object in JSON format using the default parameter of the JSON.DUMPS () function:
 
 ```py
 class Person:
@@ -234,9 +321,100 @@ json_str = json.dumps(my_person, default=encode_person)
 print(json_str)
 ```
 
-En este ejemplo, definimos una clase Person que representa una persona con un nombre, una edad y una ciudad. Luego definimos una función encode_person() que se utiliza para codificar objetos de la clase Person en formato JSON. Finalmente, creamos un objeto my_person de la clase Person y lo codificamos en formato JSON utilizando la función json.dumps() y el parámetro default.
+In this example, we define a person who represents a person with a name, an age and a city.Then we define an ENCODE_PERSON () function that is used to encode class objects in JSON format.Finally, we create an My_person object of the Person class and we encode it in JSON format using the JSON.DUMPS () function and the default parameter.
 
-En resumen, la librería "json" de Python permite codificar y decodificar datos en formato JSON. Esto es útil para enviar y recibir datos en aplicaciones web y móviles. La librería proporciona funciones simples para codificar y decodificar datos, así como opciones avanzadas para personalizar el proceso de codificación y decodificación.
+In summary, Python's "JSON" bookstore allows you to code and decode data in JSON format.This is useful for sending and receiving data in web and mobile applications.The bookstore provides simple functions to encode and decode data, as well as advanced options to customize the coding and decoding process.
+
+# Unitests
+
+The Unittest library of Python is an integrated test frame that is used to write and execute unit tests in Python.Unittest provides a series of classes and methods to create and execute unit tests.
+
+To use the Unittest library, we must first import it:
+```py
+import unittest
+```
+
+Then, we can create a proof class that inherits Unittest.testcase.Within this class, we can define different methods that contain the unit tests that we want to execute.For example, the following code defines a simple test class with a unitary test:
+```py
+class MyTestCase(unittest.TestCase):
+    def test_addition(self):
+        self.assertEqual(1 + 2, 3)
+```
+
+In this example, we create a class called Mytestcase that inherits Unittest.testcase.Then we define a method called test_addition () that performs a simple unitary test.The test compares the result of 1 + 2 with the expected value of 3 using the Assertequal () method of Unittest.testcase.
+
+To execute our unit tests, we can use the Unittest.Main () method.For example, we can add the following code at the end of our trial file to execute all the unit tests defined in our test class:
+
+```py
+if __name__ == '__main__':
+    unittest.main()
+```
+
+The Unittest library provides a wide variety of assertion methods that are used to verify the expected behavior of our code in the unit tests.Some of the most common assertion methods include:
+
+ASSERTEQUAL (A, B): Verify if A and B are equal Assertnotequal (A, B): Verify if A and B are not the same assertrue (x): Verify if x is true Assertfalse (x): Verify if x is false assertin (A, B): Verify if A is in B Assertinin (A, B): Verify if A is not in B asSertrais (Exception, Callable, *Args, ** KWDS): Verify if CALLABLE ( *ARGS, ** KWDS) generates an exceptionOf the exception type, an example of how to use some of these assertion methods in a unit test is shown below:
+
+```py
+class MyTestCase(unittest.TestCase):
+    def test_math(self):
+        # Verificar la suma
+        self.assertEqual(1 + 2, 3)
+
+        # Verificar la resta
+        self.assertEqual(5 - 2, 3)
+
+        # Verificar la multiplicación
+        self.assertEqual(2 * 3, 6)
+
+        # Verificar la división
+        self.assertEqual(6 / 2, 3)
+
+        # Verificar si una cadena está en otra
+        self.assertIn('hello', 'hello world')
+
+        # Verificar si se produce una excepción
+        self.assertRaises(ZeroDivisionError, lambda: 1 / 0)
+```
+
+In this example, we define a test_Math () test method that performs several unit tests using different assertion methods.The test verifies the sum, subtraction, multiplication and number division, and also verifies whether one chain is contained in another.The last test uses the Assertrais () method to verify if an exception of division by zero occurs when executing a zero division operation.
+
+In addition to the assertion methods, the Unittest library also provides a series of methods to configure and clean the tests, as well as to group and execute tests more effectively.Some of these methods include:
+
+Setup (): It is executed before each test and is used to configure the test environment.Teardown (): It is executed after each test and is used to clean the test environment.Setupclass (): It is executed once at the beginning of the execution of all the tests and is used to configure the test environment at class level.Teardawnclass (): It is executed once at the end of the execution of all the tests and is used to clean the proof environment at class level.Skip (Reason): It is used to omit a test and an optional reason for omission can be provided.Below is an example of how to use some of these methods in a test class:
+
+```py
+class MyTestCase(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # Configurar el entorno de prueba a nivel de clase
+        pass
+
+    def setUp(self):
+        # Configurar el entorno de prueba
+        pass
+
+    def test_addition(self):
+        # Verificar la suma
+        self.assertEqual(1 + 2, 3)
+
+    @unittest.skip("Esta prueba está desactivada temporalmente")
+    def test_subtraction(self):
+        # Verificar la resta
+        self.assertEqual(5 - 2, 3)
+
+    def tearDown(self):
+        # Limpiar el entorno de prueba
+        pass
+
+    @classmethod
+    def tearDownClass(cls):
+        # Limpiar el entorno de prueba a nivel de clase
+        pass
+```
+
+In this example, we define a MyTestCase test class that uses the Setup (), Teardown (), Setupclass () and Teardownclass () methods to configure and clean the test environment.We also use the SKIP () method to temporarily omit a subtraction test.
+
+In summary, Unittest is a Python library that is used to write and execute unit tests.It allows to define unit tests using different assertion methods and provides methods to configure and clean the test environment.Unittest is an essential tool to guarantee the quality of the code and reduce errors in Python projects.
 
 </details>
 
