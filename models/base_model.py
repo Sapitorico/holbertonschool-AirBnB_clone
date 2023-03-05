@@ -8,14 +8,17 @@ from datetime import datetime
 
 
 class BaseModel:
-    """ field to class """
+    """
+        base class to be used in a system object storage and retrieval.
+    """
 
     def __init__(self, *args, **kwargs):
         """
-        instances:
-        id: identificador unico
-        creates_at: fecha y hora exacta en la que se creo
-        updated_at: fecha y hora exacta en la que se actualizo
+        constructor
+            instances:
+            id: unique identifier
+            creates_at: exact date and time when it was created
+            updated_at: exact date and time it was updated
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -32,17 +35,17 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """ representacion de la instancia en formato string """
+        """ representation of the instance in string format """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """ actualiza el atributo updated_at con la fecha y hora actual """
+        """ updates the updated_at attribute with the current date and time"""
         self.updated_at = datetime.now()
         from models import storage
         storage.save()
 
     def to_dict(self):
-        """retorna un diccionario con todas las key y value de la instancia"""
+        """returns a dictionary with all the keys and values ​​of the instance"""
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
         for key, value in self.__dict__.items():
