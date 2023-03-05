@@ -142,6 +142,8 @@ To use this interpreter, execute the Console.py file, which imports the HBNBComm
 <details>
 <summary><h1>Flow Chart</h1></summary>
 
+<img width="7376" alt="Flow AirBnB" src="https://user-images.githubusercontent.com/105575956/222981550-41aa7c93-ac37-45fd-bfe6-e52ac01b18d5.png">
+
 
 </details>
 
