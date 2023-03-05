@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-class FileStorage que se encarga de
-guardar los datos de cada instancia creada
+    class FileStorage which takes care of
+    save the data of each created instance
 """
 import json
 import os.path
@@ -11,20 +11,26 @@ from models.user import User
 
 class FileStorage:
     """ field storage class """
+    """
+    __file_path: stores the path to the JSON file
+        that will be used to store the instance data.
+    __objects: dictionary containing all the instances
+        created and their corresponding key.
+    """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """ returns la representacion de un lso objetos como diccionario """
+        """ returns the representation of a json _object as a dictionary """
         return FileStorage.__objects
 
     def new(self, obj):
-        """ agrega un objeto al diccionario """
+        """ add an object to the dictionary """
         key = f"{obj.__class__.__name__}.{obj.id}"
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """ serializa los objetos a un archivo JSON """
+        """ serializes the objects to a JSON file """
         new_dict = {}
         for key, value in FileStorage.__objects.items():
             new_dict[key] = value.to_dict()
@@ -32,7 +38,7 @@ class FileStorage:
             json.dump(new_dict, file)
 
     def reload(self):
-        """ deserializa el archivo JSON a objetos """
+        """ deserialize the JSON file to objects """
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as file:
                 new_dict = json.load(file)
