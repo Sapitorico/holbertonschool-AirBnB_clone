@@ -3,12 +3,12 @@
 ![65f4a1dd9c51265f49d0](https://user-images.githubusercontent.com/105575956/221990937-dd28d46a-e3a2-4b3d-9d9f-be086146c900.png)
 
 The objective of the project is to deploy on your server a simple copy of the Airbnb website.
-The first part of this project is to create a command interpreter to manipulate data without a visual interface, as in a Shell (perfect for development and purification)
+The first part of this project is to create a command interpreter to manipulate data without a visual interface, as in a Shell (perfect for development and purification
 </div>
 
 <h2 align="center">The console</h2>
 
-## Primer paso
+## First step
 
 Write a command interpreter to manage your Airbnb objects.
 Each task is linked and will help you: launch a father class that is responsible for the initialization, serialization and deserialization of your future instances to create a simple serialization/deserialization flow: instances dictionary Chain Archive Json Create all the classes usedFor Airbnb that inherit from BaseModel to create the first abstract storage engine of the project: file storage.
@@ -31,30 +31,28 @@ The console, HBNBCommand, is a command interpreter that allows the user to creat
 
 </details>
 
-
 <details>
 <summary><h1>Subclasses</h1></summary>
 
 # User:
-    The User class is a subclass of the BaseModel class, which is used to represent a user in an application.It has four public class attributes: email, password, first_name and last_ame.
+The User class is a subclass of the BaseModel class, which is used to represent a user in an application.It has four public class attributes: email, password, first_name and last_ame.
 
-    These attributes represent the basic information of a user, such as its email address, password and full name.Inheriting the BaseModel class, the User class also has access to the attributes and methods of the base class, which allows greater flexibility and personalization in the implementation of the user functionality in the application.
+These attributes represent the basic information of a user, such as its email address, password and full name.Inheriting the BaseModel class, the User class also has access to the attributes and methods of the base class, which allows greater flexibility and personalization in the implementation of the user functionality in the application.
 
 # State:
-    The Subclass State inheritance of the BaseModel class and represents the status of a location.It has a public class attribute called Name and represents the name of the State.
+The Subclass State inheritance of the BaseModel class and represents the status of a location.It has a public class attribute called Name and represents the name of the State.
 
 # City:
-    The subclass City also inherits the BaseModel class and represents a city in a specific location.It has two public attributes: state_id and represents the id of the state associated with the city, and name and represents the name of the city.
+The subclass City also inherits the BaseModel class and represents a city in a specific location.It has two public attributes: state_id and represents the id of the state associated with the city, and name and represents the name of the city.
 # Amenity:
-    The amenity inherited subclass of the BaseModel class and represents a comfort or service offered in one place.It has a public class attribute called name and represents the name of comfort or service.
+The amenity inherited subclass of the BaseModel class and represents a comfort or service offered in one place.It has a public class attribute called name and represents the name of comfort or service.
 # Place:
-    The subclass place also inherits the BaseModel class and represents a place in a specific location. It has several public attributes, such as city_id, user_id, name, Description, number_rooms, number_Bathrooms, max_Guest, price_by_night, latitude, length and amenity_ids.These attributeList of comforts associated with the place.
+The subclass place also inherits the BaseModel class and represents a place in a specific location. It has several public attributes, such as city_id, user_id, name, Description, number_rooms, number_Bathrooms, max_Guest, price_by_night, latitude, length and amenity_ids.These attributeList of comforts associated with the place.
 
 # Review:
-    The subclass review also inherits from the BaseModel class and represents a review or comment of a user on a place.It has three public attributes: place_id and represents the ID of the place associated with the review, user_id, which is an empty default chain and represents the user's ID that made the review, and text and represents the text of the review.
+The subclass review also inherits from the BaseModel class and represents a review or comment of a user on a place.It has three public attributes: place_id and represents the ID of the place associated with the review, user_id, which is an empty default chain and represents the user's ID that made the review, and text and represents the text of the review.
 
 </details>
-
 <details>
 <summary align="center"><h1>Uso</h1></summary>
 
@@ -230,7 +228,15 @@ Filestorage is a class that is used to handle persistent storage of objects in a
 <details>
 <summary><h2 align="center">Resources</h2></summary>
 
-# *args and **kwargs in python explained
+# Package
+
+is a way of organizing related modules in a directory with a specific structure. A package is simply a directory that contains a special file called __init__.py, which indicates that the directory is a package and defines its content. Modules within a package can be imported using the package name followed by the module name.
+
+the modules specified in the package's __init__.py file, and not all the modules in the package directory.
+
+
+
+# \*args and **kwargs in python explained
 
 A python, "args" and "kwargs" They are two special parameters that can be used in the definitions of the functions to receive variable arguments.
 
